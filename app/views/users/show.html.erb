@@ -1,0 +1,22 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>功能名称</th> 
+      <th>路由</th>
+      <th>是否默认可访问功能</th>
+      <th>是否加入权限管理</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Permission.all.each do |user_action| %>
+    <% style_class = get_user_action_class(user_action) %>
+      <tr class="<%=style_class%>">
+        <td><%= best_in_place user_action, :action %></td>
+        <td><%= best_in_place user_action, :subject %></td>
+        <td><%= best_in_place user_action, :is_default, :type => :checkbox , :collection => ["否", "是"] %></td>
+        <td><%= best_in_place user_action, :is_available, :type => :checkbox, :collection => ["否", "是"] %></td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
